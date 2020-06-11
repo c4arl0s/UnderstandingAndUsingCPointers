@@ -164,6 +164,13 @@
      + [Polymorphism in C Summary]()
 
 # 1. [Introduction]()
+
+A solid understanding of pointers and the ability to effectively use them separates a novice C programmer from a more experienced one. Pointers pervade the language and provide much of its flexibility. They provide important support for dynamic memory allocation, are closely tied to array notation, and when used to point to function, add another dimension to flow control in a program.
+
+Pointers have long been a stumbling block in learning C. The basic concept of a pointer is simple: it is a variable that stores the address of a memory location. The concept however, quickly becomes complicated when we start applying pointer operators and try to discern their often cryptic notations. But this does not have to be the case. If we start simple and establish a firm foundation, then the advanced uses of pointers are not hard to follow and apply.
+
+The key to comprehending pointers is understanding how memory is managed in a C program. After all, pointers contain addresses in memory. If we don't understand how memory is organized and managed, it is difficult to understand how pointers work. To address this concern, the organization of memory is illustrated whenever it is useful to explain a pointer concept. Once you have a firm grasp of memory and the ways it can be organized, understanding pointers becomes a lot easier.
+
 #   - [Pointers and Memory ]()
 #      + [Why You Should Become Proficient with Pointers ]()
 #      + [Declaring Pointers ]()
@@ -311,5 +318,6 @@
 #   - [Object-Oriented Techniques]()
 #      + [Creating and Using an Opaque Pointer]()
 #      + [Polymorphism in C Summary]()
+
 
 
