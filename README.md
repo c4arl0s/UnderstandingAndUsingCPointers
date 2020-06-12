@@ -170,8 +170,34 @@ A solid understanding of pointers and the ability to effectively use them separa
 Pointers have long been a stumbling block in learning C. The basic concept of a pointer is simple: it is a variable that stores the address of a memory location. The concept however, quickly becomes complicated when we start applying pointer operators and try to discern their often cryptic notations. But this does not have to be the case. If we start simple and establish a firm foundation, then the advanced uses of pointers are not hard to follow and apply.
 
 The key to comprehending pointers is understanding how memory is managed in a C program. After all, pointers contain addresses in memory. If we don't understand how memory is organized and managed, it is difficult to understand how pointers work. To address this concern, the organization of memory is illustrated whenever it is useful to explain a pointer concept. Once you have a firm grasp of memory and the ways it can be organized, understanding pointers becomes a lot easier.
-
 #   - [Pointers and Memory ]()
+
+When a C program is compiled, it works with three types of memory:
+
+ - **Static/Global**
+
+Statically declared variables are allocated to this type of memory. Global variables also use this region of memory. They are allocated when the program starts and remain in existence until the program terminates. While all functions have access to global variables, the scope of the static variables is restricted to their defining function.
+
+ - **Automatic**
+
+These variables are declared within a function and are created when a function is called. Their scope is restricted to the function, and their lifetime is limited to the time the function is executing.
+
+- **Dynamic**
+ 
+Memory is allocated from the heap and can be released as necessary. A pointer references the allocated memory. The scope is limited to the pointer of pointers that reference the memory. It exists until it is released. This is the focus of Chapter 2.
+
+Table 1-1
+| 				  | Scope																	    | Lifetime                       |
+| --------- | ----------------------------------------- | -------------------------------|
+| global		| The entire file														| The lifetime of the application|
+| Static		| The function it is declared within				| The lifetime of the application|
+| Automatic	| The function it is declared within				| While the function is executing|
+| Dynamic		| Determined by the pointers that reference	| Until the memory is freed			 |
+
+Understanding these types of memory will enable you to better understand how pointers work. Most pointers are used to manipulate data in memory. Understanding how memory is partitioned and organized will clarify how pointers manipulate memory.
+
+A pointer variable contains the address of another variable, object, or function. An object is considered to be memory allocated using one of the memory allocation functions, such as the **malloc** function. A pointer is normally declared to be of a specific type depending on what it points to, such as a pointer to a char. The object may be any C data type such an integer, character, string, or structure. However, nothing inherent in a pointer indicates what type of data the pointer is referencing. A pointer only contains the address.
+
 #      + [Why You Should Become Proficient with Pointers ]()
 #      + [Declaring Pointers ]()
 #      + [How to Read a Declaration ]()
