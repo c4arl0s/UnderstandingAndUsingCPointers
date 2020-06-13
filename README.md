@@ -310,6 +310,37 @@ Local Variables are also called automatic variables. They are always allocated t
 ---
 
 #      + [Program Stack ]()
+
+**The program stack is an area of memory that supports the execution of functions and is normally shared with the heap**. That is, they share the same region of memory. The program stack tends to occupy the lower part of this region, while the heap uses the upper part.
+
+The **program stack** holds **stack frames**, sometimes called **activation records** or **activation frames**. Stack frames hold the parameters and local variables of a function. The heap manages dynamic memory and is discussed in "Dynamic Memory Allocation" on page 34.
+
+Figure 3-1 illustrates how the stack and heap are organized conceptually. This illustration is based on the following code sequence.
+
+```c
+void function2() {
+ Object *var1 = ...;
+ int var2;
+ printf("Program Stack Example\n");
+}
+
+void function1() {
+ Object *var3 = ...;
+ function2();
+}
+
+int main() {
+ int var4;
+ function1();
+}
+```
+
+![Screen Shot 2020-06-13 at 17 38 54](https://user-images.githubusercontent.com/24994818/84580452-c7fd6f80-ad9c-11ea-89aa-3a011c27ae50.png)
+
+As functions are called, their stack frames are pushed onto the stack and the stack grows "upward". When a function terminates, its stack frame is popped off the program stack. The memory used by the stack frame is not cleared and may eventually be overridden by another stack frame when it is pushed onto the program stack.
+
+When memory is dinamically allocated, it comes from the heap, which tends to grow "downword". The heap will fragment as memory is allocated and then deallocated. Although the heap tends to grow downward, this is a general direction. Memory can be alllocated from anywhere within the heap.
+
 #      + [Organization of a Stack Frame]()
 #   - [Passing and Returning by Pointer ]()
 #      + [Passing Data Using a Pointer ]()
