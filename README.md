@@ -301,6 +301,14 @@ In this section, we will establish the foundation for understanding and working 
 
 
 #   - [Program Stack and Heap ]()
+
+The program stack and the heap are important runtime elements of C. In this section, we will carefully examine the structure and use of **the program stack and program heap**. We will also look at the stack frame's structure, which holds local variables.
+
+---
+Note
+Local Variables are also called automatic variables. They are always allocated to a stack frame.
+---
+
 #      + [Program Stack ]()
 #      + [Organization of a Stack Frame]()
 #   - [Passing and Returning by Pointer ]()
