@@ -208,6 +208,17 @@ A pointer variable contains the address of another variable, object, or function
 #      + [The Concept of Null]()
 #   - [Pointer Size and Types ]()
 #      + [Memory Models ]()
+
+The introduction of 64-bit machines has made more apparent the differences in the size of memory allocated for data types. With different machines and compilers come different options for allocating space to C primitive data types. A common notation used to describe different data models is summarized below:
+
+  I In L Ln LL LLn P Pn
+
+Each capital letter corresponds to an integer, long, or pointer. The lowercase letters represent the number of bits allocated for the data type. Table 1-3 summarizes these models, where the number is the size in bits
+
+![Screen Shot 2020-06-13 at 13 26 44](https://user-images.githubusercontent.com/24994818/84576329-8c9d7980-ad79-11ea-936b-915ddc8dd454.png)
+
+The model depends on the operating system and compiler. More than one model may be supported on the same operating system; this is often controlled through compiler options.
+
 #      + [Predefined Pointer-Related Types ]()
 #   - [Pointer Operators ]()
 #      + [Pointer Arithmetic ]()
