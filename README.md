@@ -288,6 +288,18 @@ There is not an inherent limit on the number of levels of indirection possible. 
 #      + [Resource Acquisition Is Initialization ]()
 #      + [Using Exception Handlers 56 Summary]()
 # 3. [Pointers and Functions]()
+
+Pointers contribute immensely to a function's capability. They allow data to be passed and modified by a function. Complex data can also be passed and returned from a function in the form of a pointer to a structure. When pointers hold the address of a function, they provide a means of dynamically control a program's execution flow. In this chapter, we will explore the power of pointers as used with functions and learn how to use them to solve many real-world problems.
+
+To understand functions and their use with pointers, a good understanding of the program stack is needed. The program stack is used by most modern block-structured languages, such as C, to support the execution of functions. **When a function is invoked, its stack frame is created and then pushed onto the program stack. When function returns, its stack frame is popped off of the program stack.
+
+When working with functions, there are two areas where pointers becoe useful. The first is when we pass a pointer to a function. This allows the function to modify data. This allows the function to modify data referenced by the pointer and to pass blocks of information more efficiently.
+
+The second area is declaring a pointer to a function. In essece, function notation is pointer notation. The function's name evaluates to the address of the function, and the function's parameter are passed to the function. As we will see, function pointers provide additional capability to control the execution flow of a program.
+
+In this section, we will establish the foundation for understanding and working with functions and pointers. Because of the pervasiveness of functions and pointers, this foundation should serve you well.
+
+
 #   - [Program Stack and Heap ]()
 #      + [Program Stack ]()
 #      + [Organization of a Stack Frame]()
