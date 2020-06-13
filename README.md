@@ -225,6 +225,45 @@ The model depends on the operating system and compiler. More than one model may 
 #      + [Comparing Pointers]()
 #   - [Common Uses of Pointers ]()
 #      + [Multiple Levels of Indirection ]()
+
+Pointers can use different levels of indirection. It is not uncommon to see a variable declared as a pointer to pointer, sometimes called a **double pointer**. A good example of this is when program arguments are passed to the **main** function suing the traditionally named argc and argv parameters. This is discussed in more detail in Chapter 5.
+
+The example below uses three arrays. The first array is an array of strings used to hold a list of book titles:
+
+```c
+char *titles[] = { "A tale of two cities", "Wuthering Heights", "Don Quixote", "Odyssey", "Moby-Dick", "Hamlet", "Gulliver's Travels"};
+```
+
+Two additional arrays are provided whose purpose is to maintain a list of the "best books" and English Books. Instead of holding copies of the titles, they will hold the address of a title in the **titles** array. Both arrays will need to be declared as a pointer to a pointer to a char. The array's elements will hold the addresses of the titles array's elements. This will avoid having to duplicate memory for each title and results in a single location for titles. If a title needs to be changed, then the change will only have to be performed in one location.
+
+The two arrays are declared below. Each array element contains a pointer that points to a second pointer to char:
+
+```c
+char **bestBooks[3];
+char **englishBooks[4];
+```
+
+The two arrays are initialized and one of their elements is displayed, as shown below. In the assignment statements, the value of the righthand side is calculated by applying the subscripts first, followed by the address-operator. For example, the second statement assigns the address of the fourth element of titles to the second element of bestBooks:
+
+```c
+bestBooks[0] = &titles[0];
+bestBooks[1] = &titles[3];
+bestBooks[2] = $titles[5];
+
+englishBooks[0] = &titles[0];
+englishBooks[1] = &titles[1];
+englishBooks[2] = &titles[5];
+englishBooks[3] = &titles[6];
+
+printf("%s \n", *englishBooks[1]); // Wuthering Heights
+```
+
+![Screen Shot 2020-06-13 at 13 58 03](https://user-images.githubusercontent.com/24994818/84576930-ec961f00-ad7d-11ea-83f6-0043badc41f0.png)
+
+Using multiple levels of indirection provides additional flexibility in how code can be written and used. Certain types of operations would otherwise be more difficult. In this example, if the address of a title changes, it will only require modification to the **title array**. We would not have to modify the other arrays-
+
+There is not an inherent limit on the number of levels of indirection possible. Of course, using too many levels of indirection can be confusing and hard to maintain.
+
 #      + [Constants and Pointers]()
 #   - [Summary]()
 # 2. [Dynamic Memory Management in C]()
