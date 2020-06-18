@@ -447,6 +447,41 @@ Low Addresses ----> '----------------------'
 #      + [Pointers to Local Data ]()
 #      + [Passing Null Pointers ]()
 #      + [Passing a Pointer to a Pointer]()
+
+When a pointer is passed to a function, it is **passed by value**. If we want to modify the original pointer and not the copy of the pointer, **we need to pass it as a pointer to a pointer. In the following example, a pointer to an integer array is passed, which will be assigned memory and initialized. The function will return the allocated memory back through the first parameter. In the function, we first allocate memory and then initialize it. The address of this allocated memory is intended to be assigned to a pointer to an int. To modify this pointer in the calling function, we need t pass the pointer's address. Thus, the parameter is declared as a pointer to a pointer to an **int**. To modify this pointer in the calling function, we need to pas the pointer's address. Thus, the parameter is declared as a pointer to a pointer to an **int**. In the calling function, we need to pass the pointer's address. Thus, the parameter is declared as a pointer to a pointer to an int. In the calling function, we need to pass the address of the pointer:
+
+```c
+void allocateArray(int **array, int size, int value) {
+ *array = (int *)malloc(size * sizeof(int));
+ if(*array != NULL) {
+  for(int index=0; index<size; index++) {
+   *(*array+index) = value;
+  }
+ }
+}
+```
+
+The function can be tested using the following code:
+
+```c
+int *vector = NULL
+allocateArray(&vector, 5, 45);
+```
+
+```console
+0x100534cc0 
+Program ended with exit code: 0
+```
+
+The first parameter to allocateArray is passed as a pointer to a pointer to an integer. When we call the function, we need to pass a value of this type. This is done by passing the address of vector. The address returned by malloc is assigned to array. Derreferencing a pointer to a pointer to an integer results in a pointer to an integer. Because this is the address of vector, we modify vector.
+
+Te memory allocation is illustrated in Figure 3-7. The Before image shows the stack's state after **malloc** returns andthe array is initializeded. Likewise, the after image shows te stack's state after the function returns.
+
+> To easily identify problems such as memory leaks, draw a diagram of memory allocation.
+
+![Screen Shot 2020-06-18 at 8 01 58](https://user-images.githubusercontent.com/24994818/85023197-09de3b00-b13a-11ea-9a57-9d4ebd2b9522.png)
+
+
 #   - [Function Pointers ]()
 
 **A function pointer is a pointer that holds the address of a function**. This lecture is necessary after reading the benefit of blocks in Objective-C programming. The ability of pointers to point functions turns out to be an important and useful feature of C. This provides us with another way of executing functions in an order that may not be known at compile time and without using conditional statements.
