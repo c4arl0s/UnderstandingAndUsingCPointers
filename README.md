@@ -342,6 +342,102 @@ As functions are called, their stack frames are pushed onto the stack and the st
 When memory is dinamically allocated, it comes from the heap, which tends to grow "downword". The heap will fragment as memory is allocated and then deallocated. Although the heap tends to grow downward, this is a general direction. Memory can be alllocated from anywhere within the heap.
 
 #      + [Organization of a Stack Frame]()
+
+A stack frame consist of a several elements, including:
+
+**Return address**: The address in the program where the function is to return upon completion.
+
+**Storage for local data**: Memory allocated for local variables.
+
+**Storage for parameters**: Memory allocated for the function's parameters.
+
+**Stack and base pointers**: Pointers used by the runtime system to manage the stack.
+
+The typical C programmer will not be concerned about **the stack** and **base pointers** used in support of a **stack frame**. However, understanding what they are and how they are used provides a more in-depth understanding of the program stack.
+
+A stack pointer usually points to the top of he stack. A stack base pointer (frame pointer) is often present and points to an address within the stack frame, such as the return address. This pointer assists in accessing the stack frame's elements. Neither of these pointers are C pointers. They are address used by the runtime system to manage the program stack. If the runtime system is implemented in C, then these pointers may be real C pointers.
+
+Consider the creation of a stack frame for the following function. This function has passed an array of integers and an integer representing the array's size. Three printf statements are used to display the parameter's and the local variable's addresses:
+
+```c
+#include <stdio.h>
+
+float average(int *array, int size);
+
+int main(int argc, const char * argv[]) {
+    int array[3] = {1, 7, 3};
+    average(array, 3);
+    return 0;
+}
+
+float average(int *arrayPointer, int size)
+{
+ int sum;
+ printf("arrayPointer: %u \n", (unsigned int)&arrayPointer);
+ printf("size: %u \n", (unsigned int)&size);
+ printf("sum: %u \n", (unsigned int)&sum);
+
+ for(int index=0; index<size; index++) {
+     sum += arrayPointer[index];
+ }
+ return (sum * 1.0f) / size;
+}
+```
+
+When executed, you get output similar to the following:
+
+```console
+arrayPointer: 4022334584 
+size: 4022334580 
+sum: 4022334576 
+Program ended with exit code: 0
+```
+
+The gap in the addresses between parameters and the local variables is due to other elements of the stack frame used by the runtime system to manage the stack.
+
+When the stack frame is created, the parameters are pushed onto the frame in the opposite order of their declaration, followed by the local variables. This is illustrated in figure 3-2. In this case, size is pushed followed by array. Typically, the return address for the function call is pushed next, followed by the local variables. They are pushed in the opposite order in which they were listed.
+
+Conceptually, the stack in this example grows "up". However, the stack's frame parameters and local variables and new stack frames are added at lower memory addresses. The actual direction the stack grows is implementation-specific.
+
+The variable index used in the for statement is not included as part of this stack frame. C treats block statement as **"mini"** functions and will push and pop them as appropiate. In this case, the block statement is pushed onto the program stack above the average stack frame wen it is executed and the popped off when it is done.
+
+While the precise addresses can vary, the order usually will not. This is important to understand, as it helps explain how memory is allocated and establishes the relative order of the parameters and variables. This can be useful when debugging pointer problems. If you are not aware of how the stack frame is allocated, the assignment of addresses may not make sense.
+
+As stack frames are pushed onto the program stack, the system may run out of memory. This condition is called **stack overflow** and generally results in the program terminating abnormally. Keep in mind that each thread is typically allocated its own program stack.
+
+![Screen Shot 2020-06-15 at 12 32 00](https://user-images.githubusercontent.com/24994818/84688034-3c065780-af04-11ea-85df-e7da11ed9280.png)
+
+This can lead to potential conflicts if one or more threads access the same object in memory. This will be addressed in "Sharing Pointers Between Threads" on page 186.
+
+High Addresses ---> .----------------------.
+                    |      Environment     |
+                    |----------------------|
+                    |                      |   Functions and variable are declared
+                    |         STACK        |   on the stack.
+base pointer ->     | - - - - - - - - - - -|
+                    |           |          |
+                    |           v          |
+                    :                      :
+                    .                      .   The stack grows down into unused space
+                    .         Empty        .   while the heap grows up. 
+                    .                      .
+                    .                      .   (other memory maps do occur here, such 
+                    .                      .    as dynamic libraries, and different memory
+                    :                      :    allocate)
+                    |           ^          |
+                    |           |          |
+ brk point ->       | - - - - - - - - - - -|   Dynamic memory is declared on the heap
+                    |          HEAP        |
+                    |                      |
+                    |----------------------|
+                    |          BSS         |   Uninitialized data (BSS)
+                    |----------------------|   
+                    |          Data        |   Initialized data (DS)
+                    |----------------------|
+                    |          Text        |   Binary code
+Low Addresses ----> '----------------------'
+
+
 #   - [Passing and Returning by Pointer ]()
 #      + [Passing Data Using a Pointer ]()
 #      + [Passing Data by Value ]()
@@ -351,6 +447,15 @@ When memory is dinamically allocated, it comes from the heap, which tends to gro
 #      + [Passing Null Pointers ]()
 #      + [Passing a Pointer to a Pointer]()
 #   - [Function Pointers ]()
+
+**A function pointer is a pointer that holds the address of a function**. This lecture is necessary after reading the benefit of blocks in Objective-C programming. The ability of pointers to point functions turns out to be an important and useful feature of C. This provides us with another way of executing functions in an order that may not be known at compile time and without using conditional statements.
+
+One concern regarding the use of function pointers **is a potentially slower running program**. The processor may not be able to use branch prediction in conjunction with **pipelining**. **Branch prediction is a technique whereby the processor will **guess** which multiple execution sequences will be executed**. **Pipelining is a hardware technology commonly used to improve processor performance and is achieved by overlapping instruction execution. In this scheme, the procesor wll start processing the branch it believes will be executed. If the processor successfully predicts the correct branch, then the instructions currently in the pipeline will not have to be discarted.
+
+This slowdown may or may not be realized. The use of function pointers in situations such as table lookup can mitigate performance issues. In this section, we will learn how to declare function pointers, see how they can be used to support alternate execution paths, and explore techniques that exploit their potential.
+
+**The use of function pointers is well-known to passing a function as parameter to other functions**.
+
 #      + [Declaring Function Pointers ]()
 #      + [Using a Function Pointer ]()
 #      + [Passing Function Pointers ]()
