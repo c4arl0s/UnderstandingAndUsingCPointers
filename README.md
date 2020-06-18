@@ -409,6 +409,7 @@ As stack frames are pushed onto the program stack, the system may run out of mem
 
 This can lead to potential conflicts if one or more threads access the same object in memory. This will be addressed in "Sharing Pointers Between Threads" on page 186.
 
+```
 High Addresses ---> .----------------------.
                     |      Environment     |
                     |----------------------|
@@ -436,7 +437,7 @@ base pointer ->     | - - - - - - - - - - -|
                     |----------------------|
                     |          Text        |   Binary code
 Low Addresses ----> '----------------------'
-
+```
 
 #   - [Passing and Returning by Pointer ]()
 #      + [Passing Data Using a Pointer ]()
@@ -465,6 +466,22 @@ This slowdown may or may not be realized. The use of function pointers in situat
 #      + [Casting Function Pointers]()
 #   - [Summary]()
 # 4. [Pointers and Arrays]()
+
+An **array** is a fundamental **data structure** built into C. A through understanding of arrays and their use is necessary to develop effective applications. Misunderstandings of array and pointers usage can result in hard-to-find errors and less than optimal performance in applications. Array and pointer notations are closely related to each other and can frequently be used interchangeably in the right context.
+
+A common misconception is that an array and pointer are completely interchangeable. **An array name is not a pointer** Although an array nae can be treated as a pointer at times and array notation can be ued with pointers, they are distinct and cannot always be used in place of each other. Understanding this difference will help you avoid incorrect use of these notations. For example, although the name of an array used by itself will return the array's address, we cannot use the name by itself as the targt of an assignment.
+
+Arrays support many parts of an application and can be single or multidimensional. In this chapter, we will address the fundamental aspects of arrays as they relate to pointers. to provide you with a deep understanding of arrays and the various ways they can be manipulated with pointers. You will see their use in more advanced contexts throughout the book.
+
+We start with quick review of arrays and then examine the similarities and differences between array and pointers notation. Arrays can be created using **malloc** type functions. These functions provide more flexibility that that afforded by traditional array declarations. We will see the **realloc** function can be used to change the amount of memory allocated for an array.
+
+Dynamically allocating memory for an array can present challenges, especially when we are dealing with arrays with two or more dimensions, as we have to ensure that the array is allocated in contiguous memory.
+
+We will also explore problems that can ocurr when passing and returning arrays. In most situations, the array's size must be passed so the array can be properly handled in a function. There is nothing inherent in an array's internal representation that determines its lenght. If we do not passthe lenght, the function has no standard means of knowing where the array ends. We will also examine how to created **jagged arrays in C**, although they are infrequently used. A jagged array is a two dimensional array where each row may have a different numbr o columns.
+
+To demonstrate these concepts, we will use a vector for single-dimensional arrays and matrix for two-dimensional arrays. Vectors and matrices have found extensive use in many areas, including analyzing electromagnetic fields, weatger prediction, and in mathematics.
+
+
 #   - [Quick Review of Arrays ]()
 #      + [One-Dimensional Arrays]()
 #      + [Two-Dimensional Arrays]()
