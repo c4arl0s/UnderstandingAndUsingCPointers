@@ -21,6 +21,7 @@
      + [How to Read a Declaration ]()
      + [Address of Operator ]()
      + [Displaying Pointer Values ]()
+     + [Virtual Memory and Pointers]()
      + [Dereferencing a Pointer Using the Indirection Operator ]()
      + [Pointers to Functions ]()
      + [The Concept of Null]()
@@ -203,6 +204,10 @@ A pointer variable contains the address of another variable, object, or function
 #      + [How to Read a Declaration ]()
 #      + [Address of Operator ]()
 #      + [Displaying Pointer Values ]()
+#      + [Virtual Memory and Pointers]()
+
+To further complicate displaying addresses, the pointer addresses displayed on a **virtual operating system** are not likely to be the real physical memory addresses. A virtual operating system allows a program to be split across the machine's physical address space. An application is split into **pages/frames**. These pages represent areas of main memory. The pages of the application are allocated to different, potentially noncontiguous areas of memory and may not all be in memory at the same time. If the operating system needs memory currently held by a page, the memory may be swapped out to secondary storage and then reloaded at a later time, frequently at a different memory location. These capabilities provide a virtual operating system with considerable flexibility in how it manages memory.
+
 #      + [Dereferencing a Pointer Using the Indirection Operator ]()
 #      + [Pointers to Functions ]()
 #      + [The Concept of Null]()
