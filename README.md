@@ -210,6 +210,15 @@ To further complicate displaying addresses, the pointer addresses displayed on a
 
 #      + [Dereferencing a Pointer Using the Indirection Operator ]()
 #      + [Pointers to Functions ]()
+
+A Pointer can be declared to point a function. The declaration notation is a bit cryptic. The following ilustrates how to declare a pointer to a function. The function is passed void and returns void. The pointer name is pointerFunction:
+
+```c
+void (*pointerFunction)();
+```
+
+A **pointer to a function** is a rich topic area and will be covered in more detail in [Chapter 3]().
+
 #      + [The Concept of Null]()
 #   - [Pointer Size and Types ]()
 #      + [Memory Models ]()
