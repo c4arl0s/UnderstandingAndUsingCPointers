@@ -220,6 +220,84 @@ void (*pointerFunction)();
 A **pointer to a function** is a rich topic area and will be covered in more detail in [Chapter 3]().
 
 #      + [The Concept of Null]()
+
+The concept of **null** is interesting and sometimes misunderstood. Confusion can occur because we often deal with several similar, yet disctinct concepts, including:
+
+- **The null concept**
+- **The null pointer constant.**
+- **The NULL macro**
+- **The ASCII NUL.**
+- **A null string.**
+- **The null statement.**
+
+When **NULL is asigned to a pointer, it means the pointer does not point to anything**. 
+
+**The null concept refers to the idea that a pointer can hold a special value that is not equal to another pointer**. It does not point to any area of memory. Two null pointers will always be equal to each other. There can be a null pointer type for each pointer type, such as a pointer to a character or a pointer to an integer, although this is uncommond.
+
+The **null concept** is an abstraction supported by the null pointer constant. This constant may or may not be a constant zero. A C programmer need not be concerned with thier actual internal representation.
+
+The **NULL macro** is a constant integer zero cast to a pointer to void. In many libraries, it is defined as follows:
+
+```c
+#define NULL ((void *)0)
+```
+
+This is what typically think of as a null pointer. Its definition frequently can be found within several differente header files, including **stddef.h, sdlib.h and stdio.h.**
+
+If a nonzero bit pattern is used by the compiler to represent nul, then it is the compiler's responsability to ensure all uses of NULL or 0 in a pointer context are treated as null pointers. The actual internal representation of null is **implementation-defined**. The use of NULL and 0 are language-level symbols that represent a null pointer.
+
+The **ASCII NUL** is defined as a byte containing all zeros. However, this is not the same as a null pointer. A string in C is represented as a sequence of characters terminated by the zero value. The null string is an empty string and does not contain any characters. 
+
+Finally the **null statement** consist of a statement with a single semicolon.
+
+As we will see, a null pointer is a very useful feature for many data structure implementations, such as a linked lis where it is often to mark the end of a list.
+
+If the intent was to assign te null value to pi, we use the NULL type as follows.
+
+```c
+pi = NULL;
+```
+---
+Note
+A null pointer and an uninitialized pointer are different. An uninitialized pointer can contain any value, whereas a pointer containing NULL does not reference any location in memory
+---
+
+Interestingly, we can assign a zero to a pointer, but we cannot assign any other integer value. Consider the following assigment operations:
+
+```c
+pi = 0
+pi = NULL;
+pi = 100; //syntax error
+pi = nume; // Sintax error
+```
+
+A pointer can be used as the sole operand of a logical expression. For example, we can test to see whether the pointer is set to NULL usinh the following sequence:
+
+```c
+if(pi) {
+ //not null
+} else {
+ // is null
+}
+```
+
+---
+note
+Either of the two folllowng expressions are valid but are redundant. It may be clearer, but explicit comparison to NULL is not necessary.
+---
+
+If pi has been assigned a NULL value in this context, then it will be interpreted as the binary zero. Since this represents false in C, the else closure will be executed if pi contains NULL.
+
+```c
+if(pi == NULL) //...
+if(po != NULL) //...
+```
+
+---
+Note
+A null pointer should never be dereferenced because it does not contain a valid address. When executed it will result in the program terminating.
+---
+
 #   - [Pointer Size and Types ]()
 #      + [Memory Models ]()
 
