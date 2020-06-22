@@ -278,6 +278,9 @@ There is not an inherent limit on the number of levels of indirection possible. 
 #      + [Assigning NULL to a Freed Pointer ]()
 #      + [Double Free ]()
 #      + [The Heap and System Memory ]()
+
+The heap typically uses operating system functions to manage its memory. The heap's size may be fixed when the program is created, or it may be allowed to grow. However, the heap manager does not necessarily return memory to the operating system when the **free** function is called. The deallocated memory is simply made available for subsequent use by the application. Thus, when a program allocates and the frees up memory, the deallocation of memory is not normally reflected in the application memory usage as seen from the operating system perspective.
+
 #      + [Freeing Memory upon Program Termination ]()
 #   - [Dangling Pointers ]()
 #      + [Dangling Pointer Examples ]()
