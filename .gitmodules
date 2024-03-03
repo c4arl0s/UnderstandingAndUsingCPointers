@@ -1,0 +1,27 @@
+[submodule "UnderstandingAndUsingCPointersContentIndex"]
+	path = UnderstandingAndUsingCPointersContentIndex
+	url = git@github.com:c4arl0s/UnderstandingAndUsingCPointersContentIndex.git
+[submodule "1IntroductionUAUCPointers"]
+	path = 1IntroductionUAUCPointers
+	url = git@github.com:c4arl0s/1IntroductionUAUCPointers.git
+[submodule "2DynamicMemoryManagementInCUAUCPointers"]
+	path = 2DynamicMemoryManagementInCUAUCPointers
+	url = git@github.com:c4arl0s/2DynamicMemoryManagementInCUAUCPointers.git
+[submodule "3PointersAndFunctionsUAUCPointers"]
+	path = 3PointersAndFunctionsUAUCPointers
+	url = git@github.com:c4arl0s/3PointersAndFunctionsUAUCPointers.git
+[submodule "4PointersAndArraysUAUCPointers"]
+	path = 4PointersAndArraysUAUCPointers
+	url = git@github.com:c4arl0s/4PointersAndArraysUAUCPointers.git
+[submodule "5PointersAndStringsUAUCPointers"]
+	path = 5PointersAndStringsUAUCPointers
+	url = git@github.com:c4arl0s/5PointersAndStringsUAUCPointers.git
+[submodule "6PointersAndStructures"]
+	path = 6PointersAndStructures
+	url = git@github.com:c4arl0s/6PointersAndStructures.git
+[submodule "7SecurityIssuesAndTheImproperUseOfPointers"]
+	path = 7SecurityIssuesAndTheImproperUseOfPointers
+	url = git@github.com:c4arl0s/7SecurityIssuesAndTheImproperUseOfPointers.git
+[submodule "8OddsAndEnds"]
+	path = 8OddsAndEnds
+	url = git@github.com:c4arl0s/8OddsAndEnds.git
